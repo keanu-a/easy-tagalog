@@ -45,6 +45,13 @@ python manage.py startapp users
 ```
 
 **REMEMBER**: When you create an app, you need to register it in the projects `settings.py` under the `INSTALLED_APPS`
+```python
+INSTALLED_APPS = [
+    # other default apps
+    'users',
+    'tests',
+]
+```
 
 ## Creating a superuser
 
