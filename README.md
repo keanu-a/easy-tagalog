@@ -30,6 +30,8 @@ To apply the migration to the database, you will need to run:
 python manage.py migrate
 ```
 
+**DO MIGRATION STEPS IN THIS ORDER**
+
 ## Creating apps
 
 If you want to create a new app, or object in the database, you should create a new app by running:
@@ -43,3 +45,21 @@ python manage.py startapp users
 ```
 
 **REMEMBER**: When you create an app, you need to register it in the projects `settings.py` under the `INSTALLED_APPS`
+
+## Creating a superuser
+
+You will want to create a superuser for accessing the admin panel, which can be done by running:
+```python
+python manage.py createsuperuser
+```
+
+## Running a server
+
+Run a development server to test changes by running:
+```python
+python manage.py runserver
+```
+
+## Static files
+
+Static files like CSS, JS, and images should go in a `static/` directory
