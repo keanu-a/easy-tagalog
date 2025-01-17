@@ -53,6 +53,15 @@ INSTALLED_APPS = [
 ]
 ```
 
+When you create an app, you will want to manage its objects in Django's admin interface.
+So make sure you register your model in `admin.py`
+```python
+from django.contrib import admin
+from .models import Test
+
+admin.site.register(Test)
+```
+
 ## Creating a superuser
 
 You will want to create a superuser for accessing the admin panel, which can be done by running:
