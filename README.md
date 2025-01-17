@@ -37,7 +37,7 @@ If you want to create a new app, or object in the database, you should create a 
 python manage.py startapp <app-name>
 ```
 
-For example if you want to create an app to manage users, you could run:
+For example if you want to create an app to manage `users`, you could run:
 ```python
 python manage.py startapp users
 ```
