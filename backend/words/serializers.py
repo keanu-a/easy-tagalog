@@ -22,7 +22,7 @@ class EnglishSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = English
-        fields = ['english']
+        fields = ['meaning']
         
         
 class TranslationSerializer(serializers.ModelSerializer):
