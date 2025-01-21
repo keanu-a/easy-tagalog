@@ -64,7 +64,7 @@ class Translation(models.Model):
 # Many-to-one Word
 class Aspect(models.Model):
     
-    class Aspect(models.TextChoices):
+    class AspectType(models.TextChoices):
         COMPLETED = 'COMP', 'completed'
         UNCOMPLETED = 'UNCOMP', 'uncompleted'
         CONTEMPLATED = 'CONT', 'contemplated'
@@ -72,7 +72,7 @@ class Aspect(models.Model):
     word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name='aspects')
         
     tagalog = models.CharField(max_length=60, unique=True)
-    aspect = models.CharField(max_length=10, choices=Aspect)
+    aspect = models.CharField(max_length=10, choices=AspectType)
     accents = models.JSONField() # Must be an array of integers
     audio_url = models.CharField(max_length=60)
     
