@@ -52,10 +52,9 @@ class LinkedWordSerializer(serializers.ModelSerializer):
 
 
 class WordSerializer(serializers.ModelSerializer):
-    
-    translations = TranslationSerializer(many=True)
-    aspects = AspectSerializer(many=True)
-    linked_words = LinkedWordSerializer(many=True)
+    translations = TranslationSerializer(many=True, required=True)
+    aspects = AspectSerializer(many=True, required=False)
+    linked_words = LinkedWordSerializer(many=True, required=False)
 
     class Meta:
         model = Word
@@ -73,17 +72,45 @@ class WordSerializer(serializers.ModelSerializer):
             'linked_words'
         ]
         
+    def create(self, validated_data):
+        translations_data = validated_data.pop('translations', [])
+        aspects_data = validated_data.pop('aspects', [])
+        linked_words_data = validated_data.pop('linked_words', [])
+        
+        word = Word.objects.create(**validated_data)
+        
+        for translation_data in translations_data:
+            english_data = translation_data.pop('english_meanings', [])
+            translation = Translation.objects.create(word=word, **translation_data)
+            
+            english_instances = []
+            for english in english_data:
+                english_instance, _ = English.objects.get_or_create(**english)
+                english_instances.append(english_instance)
+            
+            translation.english_meanings.set(english_instances)
+            
+        for aspect_data in aspects_data:
+            Aspect.objects.create(word=word, **aspect_data)
+        
+        for linked_word_data in linked_words_data:
+            LinkedWord.objects.create(word=word, **linked_word_data)
+            
+        return word
+        
     def validate(self, data):
         # Validate if word is a verb
-        if any(translation.part_of_speech == Translation.PartOfSpeech.VERB for translation in data['translations']):
+        translations = data.get('translations', [])
+        
+        if any(translation['part_of_speech'] == Translation.PartOfSpeech.VERB for translation in translations):
             if "is_irregular_verb" not in data or data["is_irregular_verb"] == None:
                 raise serializers.ValidationError("Must provide 'is_irregular_verb' if word is a verb")
             
             aspects = data.get("aspects", [])
-            if data["aspects"].length != 3:
+            if len(aspects) != 3:
                 raise serializers.ValidationError("Must provide 3 aspects if word is a verb")
             
-            aspect_types = {aspect.aspect for aspect in aspects}
+            aspect_types = {aspect['aspect'] for aspect in aspects}
             required_aspects = {Aspect.AspectType.COMPLETED, Aspect.AspectType.UNCOMPLETED, Aspect.AspectType.CONTEMPLATED}
             
             if aspect_types != required_aspects:

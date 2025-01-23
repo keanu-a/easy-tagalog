@@ -17,6 +17,9 @@ class Word(models.Model):
 
     audio_url = models.CharField(max_length=60)
     
+    class Meta:
+        unique_together = ('tagalog', 'accents',)
+    
     def __str__(self) -> str:
         return self.tagalog
     
