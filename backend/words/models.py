@@ -30,7 +30,7 @@ class Word(models.Model):
 # Many-to-many to Translation
 class English(models.Model):
     
-    meaning = models.CharField(max_length=60, unique=True)
+    meaning = models.CharField(max_length=60)
     
     def __str__(self) -> str:
         return self.meaning
