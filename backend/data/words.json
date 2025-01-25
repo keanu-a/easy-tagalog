@@ -1,0 +1,35 @@
+[
+    {
+        "tagalog": "oo",
+        "root": "oo",
+        "accents": [0],
+        "audio_url": "oo.mp3",
+        "translations": [
+            {
+                "part_of_speech": "INTERR",
+                "english_meanings": [
+                    {
+                        "meaning": "yes"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "tagalog": "opo",
+        "root": "oo",
+        "accents": [0],
+        "audio_url": "opo.mp3",
+        "note": "respectful",
+        "translations": [
+            {
+                "part_of_speech": "INTERR",
+                "english_meanings": [
+                    {
+                        "meaning": "yes"
+                    }
+                ]
+            }
+        ]
+    }
+]
