@@ -1,0 +1,49 @@
+[
+    {
+        "tagalog": "Ano ang niluluto mo?",
+        "english": "What are you cooking?",
+        "word_meanings": [
+            {
+                "position": 1,
+                "word": "ano",
+                "part_of_speech_type": "INTERROGATIVE"
+            },
+            {
+                "position": 2,
+                "word": "ang",
+                "part_of_speech_type": "INTERROGATIVE"
+            },
+            {
+                "position": 3,
+                "word": "lituin",
+                "use_aspect": "UNCOMPLETED"
+            },
+            {
+                "position": 4,
+                "word": "mo",
+                "part_of_speech_type": "PRONOUN"
+            }
+        ]
+    },
+    {
+        "tagalog": "Anong niluluto mo?",
+        "english": "What are you cooking?",
+        "word_meanings": [
+            {
+                "position": 1,
+                "word": "ano",
+                "use_linked_word": true
+            },
+            {
+                "position": 3,
+                "word": "lituin",
+                "use_aspect": "UNCOMPLETED"
+            },
+            {
+                "position": 4,
+                "word": "mo",
+                "part_of_speech_type": "PRONOUN"
+            }
+        ]
+    }     
+]
